@@ -1,1 +1,1 @@
-# SPT.eCommerce.Demo
+# Sharp Programmer Training - eCommerce Demo Project
