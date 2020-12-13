@@ -22,6 +22,10 @@ namespace SPT.eCommerce.Api.Controllers
     {
         private readonly IProductService _productService;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="productService">IProductService Instance</param>
         public ProductsController(IProductService productService)
         {
             _productService = productService;
