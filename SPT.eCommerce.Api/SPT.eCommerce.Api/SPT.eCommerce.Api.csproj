@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<LangVersion>8.0</LangVersion>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Verve.Utility.Core.ContractResult" Version="1.20201212.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\SPT.eCommerce.Api.DataContract\SPT.eCommerce.Api.DataContract.csproj" />
+	  <ProjectReference Include="..\SPT.eCommerce.Api.EntityStore\SPT.eCommerce.Api.EntityStore.csproj" />
+	  <ProjectReference Include="..\SPT.eCommerce.Api.Entity\SPT.eCommerce.Api.Entity.csproj" />
+	  <ProjectReference Include="..\SPT.eCommerce.Api.Service\SPT.eCommerce.Api.Service.csproj" />
+	</ItemGroup>
+
+
+</Project>
