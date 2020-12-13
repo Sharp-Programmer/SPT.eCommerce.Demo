@@ -15,7 +15,10 @@ namespace SPT.eCommerce.Api.Controllers
         [HttpGet("")]
         public IActionResult Get()
         {
-            return Ok(new { message = "Sharp Programmer Tutorials - eCommerce Sample project is running!" });
+            return Ok(new {
+                message = "Sharp Programmer Tutorials - eCommerce Sample project is running!",
+                tryIt = $"{Request.Scheme}://{Request.Host}/docs/index.html"
+            }); ;
         }
     }
 }
