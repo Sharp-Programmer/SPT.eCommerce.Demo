@@ -13,6 +13,9 @@ using Verve.Utility.Core.ContractResult.ApiResponse;
 
 namespace SPT.eCommerce.Api.Controllers
 {
+    /// <summary>
+    /// Products controller
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
@@ -34,6 +37,12 @@ namespace SPT.eCommerce.Api.Controllers
         {
             return await ActionResultBuilder.ExecuteAndBuildResult(() => _productService.GetProductsAsync());
         }
+
+        /// <summary>
+        /// Get product by Id
+        /// </summary>
+        /// <param name="productId">Guid represents the id of product to fetch details</param>
+        /// <returns>Product details if found otherwise 404</returns>
 
         [HttpGet("{productId}")]
         [ProducesResponseType(typeof(Product), 200)]
