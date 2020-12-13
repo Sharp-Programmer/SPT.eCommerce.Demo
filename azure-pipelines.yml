@@ -4,20 +4,25 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- main
-pr:
- - main
+  - main
 
+#-------------------------------------------------#
+pr:
+  - main
+
+#-------------------------------------------------#
 pool:
   vmImage: 'windows-latest'
 
+#-------------------------------------------------#
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   buildNumber: '$(date:yyyyMMdd)$(rev:.r)'
-steps:
 
+#-------------------------------------------------#
+steps:
 - task: DotNetCoreCLI@2
   name: BuildProjects
   displayName: 'Build Projects'
@@ -26,7 +31,7 @@ steps:
     command: build
     projects: '**/*.sln'
     arguments: '--configuration $(buildConfiguration)'
-    
+#--------------------------------------------------#
 - task: DotNetCoreCLI@2
   name: 'Publish'
   displayName: 'Publish Artifacts'
@@ -35,9 +40,13 @@ steps:
     projects: '**/*.sln'
     zipAfterPublish: true
     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+#-------------------------------------------------#
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
+  condition: succeededOrFailed()
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
     ArtifactName: drop
-  condition: succeededOrFailed()
+  
+
+#-------------------------------------------------#
