@@ -1,6 +1,6 @@
 
 variables:
-  solution: '**/SPT.eCommerce.Api.Initial.sln'
+  solution: '**/SPT.eCommerce.Initial.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   buildNumber: '$(date:yyyyMMdd)$(rev:.r)'
