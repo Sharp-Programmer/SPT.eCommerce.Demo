@@ -18,25 +18,17 @@ pr:
     include:
     - main 
   paths:
-    include
-    - "src/SPT.eCommerce.Api.Initial/*"    
+    include:
+      - "src/SPT.eCommerce.Api.Initial/*"
+      
 name: $(date:yyyyMMdd)$(rev:.r)
 resources:
   repositories:
   - repository: self
-    type: git
-    ref: - main
 
 #-------------------------------------------------#
 steps:
--task: DotNetCoreCLI@2
-  name: 'Restore'
-  displayName: 'Restore'
 
-  inputs:
-    command: Restore
-    projects: 'src/SPT.eCommerce.Api.Initial/SPT.eCommerce.Initial.sln'
-#-------------------------------------------------#    
 - task: DotNetCoreCLI@2
   name: BuildProjects
   displayName: 'Build Projects'
