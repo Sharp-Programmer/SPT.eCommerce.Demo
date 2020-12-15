@@ -1,6 +1,6 @@
 variables:
-  solution: '**/SPT.eCommerce.Cart.sln'
-  projects: '**/SPT.eCommerce.Cart.Container.csproj'
+  solution: 'src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.sln'
+  projects: 'src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.Container/SPT.eCommerce.Cart.Container.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   buildNumber: '$(date:yyyyMMdd)$(rev:.r)'
