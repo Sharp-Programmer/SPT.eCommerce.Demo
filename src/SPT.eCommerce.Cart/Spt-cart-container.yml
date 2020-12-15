@@ -1,3 +1,4 @@
+
 variables:
   solution: 'src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.sln'
   projects: 'src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.Container/SPT.eCommerce.Cart.Container.csproj'
@@ -24,43 +25,46 @@ name: $(date:yyyyMMdd)$(rev:.r)
 resources:
   repositories:
   - repository: self
-
-#-------------------------------------------------#
-steps:
-- checkout: self
-- task: DotNetCoreCLI@2
-  displayName: Restore
-  inputs:
-    command: restore
-    projects: $(solution)
-
-- task: DotNetCoreCLI@2
-  name: BuildProjects
-  displayName: 'Build Projects'
- 
-  inputs:
-    command: build
-    projects: '$(projects)'
-    arguments: '--configuration $(buildConfiguration)'
-#--------------------------------------------------#
-- task: DotNetCoreCLI@2
-  name: 'Publish'
-  displayName: 'Publish $(build.artifactstagingdirectory)'
-  inputs:
-    command: custom
-    custom: 'publish'
-    projects: '**/src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.Container/SPT.eCommerce.Cart.Container.csproj'
-    publishWebProjects: false
-    zipAfterPublish: true
-    nobuild: true
-    arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory) --framework netcoreapp3.1 '
-#-------------------------------------------------#
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Build Artifact $(build.artifactstagingdirectory)'
-  condition: succeeded()
-  inputs:
-    PathtoPublish: '$(build.artifactstagingdirectory)'
-    ArtifactName: CartApp
-  
-
-#-------------------------------------------------#
+    type: git
+    ref: main
+#===========================================================#    
+jobs:
+ - job: job_1
+   displayName: "Agent Job 1"
+   pool: 
+     name: hosted VS2017
+   steps:
+    - checkout: self
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: $(solution)
+    #-------------------------------------------------#
+    - task: DotNetCoreCLI@2
+      name: BuildProjects
+      displayName: 'Build Projects'
+      inputs:
+          command: build
+          projects: '$(projects)'
+          arguments: '--configuration $(buildConfiguration)'
+    #--------------------------------------------------#
+    - task: DotNetCoreCLI@2
+      name: 'Publish'
+      displayName: 'Publish $(build.artifactstagingdirectory)'
+      inputs:
+        command: custom
+        custom: 'publish'
+        projects: '$(projects)'
+        publishWebProjects: false
+        zipAfterPublish: true
+        nobuild: true
+        arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory) --framework netcoreapp3.1 '
+    #-------------------------------------------------#
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Build Artifact $(build.artifactstagingdirectory)'
+      condition: succeeded()
+      inputs:
+        PathtoPublish: '$(build.artifactstagingdirectory)'
+        ArtifactName: CartApp
+    #-------------------------------------------------#
