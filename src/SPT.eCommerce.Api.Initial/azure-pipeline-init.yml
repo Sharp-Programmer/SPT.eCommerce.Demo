@@ -20,7 +20,6 @@ pr:
   paths:
     include:
       - "src/SPT.eCommerce.Api.Initial/*"
-      
 name: $(date:yyyyMMdd)$(rev:.r)
 resources:
   repositories:
@@ -28,6 +27,12 @@ resources:
 
 #-------------------------------------------------#
 steps:
+- checkout: self
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: $(BuildParameters.RestoreBuildProjects)
 
 - task: DotNetCoreCLI@2
   name: BuildProjects
