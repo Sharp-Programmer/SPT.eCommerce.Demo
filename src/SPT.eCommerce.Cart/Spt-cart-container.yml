@@ -50,6 +50,7 @@ steps:
     command: custom
     custom: 'publish'
     projects: '**/src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.Container/SPT.eCommerce.Cart.Container.csproj'
+    publishWebProjects: false
     zipAfterPublish: true
     nobuild: true
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory) --framework netcoreapp3.1 '
