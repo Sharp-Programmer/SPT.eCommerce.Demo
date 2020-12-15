@@ -1,11 +1,11 @@
 
 variables:
-- name: BuildParameters.RestoreBuildProjects
-  value: 'src/SPT.eCommerce.Api.Initial/SPT.eCommerce.Api.Initial.sln'
-- name: BuildParameters.reportDirectory
-  value: ''
-- name: BuildParameters.codeCoverageTool
-  value: JaCoCo
+  solution: '**/SPT.eCommerce.Api.Initial.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  buildNumber: '$(date:yyyyMMdd)$(rev:.r)'
+  codeCoverageTool: 'JaCoCo'
+
 trigger:
   branches:
     include:
@@ -32,7 +32,7 @@ steps:
   displayName: Restore
   inputs:
     command: restore
-    projects: $(BuildParameters.RestoreBuildProjects)
+    projects: $(solution)
 
 - task: DotNetCoreCLI@2
   name: BuildProjects
@@ -50,7 +50,7 @@ steps:
     command: publish
     projects: 'src/SPT.eCommerce.Api.Initial/SPT.eCommerce.Initial.sln.sln'
     zipAfterPublish: true
-    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)'
 #-------------------------------------------------#
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
