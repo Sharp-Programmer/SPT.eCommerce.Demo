@@ -56,7 +56,7 @@ steps:
   condition: succeeded()
   inputs:
     PathtoPublish: '$(build.artifactstagingdirectory)'
-    ArtifactName: drop
+    ArtifactName: CartApp
   
 
 #-------------------------------------------------#
