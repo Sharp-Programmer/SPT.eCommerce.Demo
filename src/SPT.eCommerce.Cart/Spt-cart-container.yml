@@ -48,7 +48,7 @@ steps:
   displayName: 'Publish $(build.artifactstagingdirectory)'
   inputs:
     command: publish
-    projects: '$(projects)'
+    projects: '**/src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.Container/SPT.eCommerce.Cart.Container.csproj'
     zipAfterPublish: true
     
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)'
