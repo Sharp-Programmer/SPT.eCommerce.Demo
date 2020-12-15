@@ -1,5 +1,6 @@
 variables:
   solution: '**/SPT.eCommerce.Cart.sln'
+  projects: '**/SPT.eCommerce.Cart.Container.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   buildNumber: '$(date:yyyyMMdd)$(rev:.r)'
@@ -39,7 +40,7 @@ steps:
  
   inputs:
     command: build
-    projects: '$(solution)'
+    projects: '$(projects)'
     arguments: '--configuration $(buildConfiguration)'
 #--------------------------------------------------#
 - task: DotNetCoreCLI@2
@@ -47,7 +48,7 @@ steps:
   displayName: 'Publish'
   inputs:
     command: publish
-    projects: '$(solution)'
+    projects: '$(projects)'
     zipAfterPublish: true
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)'
 #-------------------------------------------------#
