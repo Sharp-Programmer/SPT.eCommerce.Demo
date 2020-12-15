@@ -47,10 +47,10 @@ steps:
   name: 'Publish'
   displayName: 'Publish $(build.artifactstagingdirectory)'
   inputs:
-    command: publish
-    projects: '**/src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.Container/SPT.eCommerce.Cart.Container.csproj'
+    command: custom
+    custom: 'publish **/src/SPT.eCommerce.Cart/SPT.eCommerce.Cart.Container/SPT.eCommerce.Cart.Container.csproj'
     zipAfterPublish: true
-    
+    nobuild: true
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory) --framework netcoreapp3.1 '
 #-------------------------------------------------#
 - task: PublishBuildArtifacts@1
