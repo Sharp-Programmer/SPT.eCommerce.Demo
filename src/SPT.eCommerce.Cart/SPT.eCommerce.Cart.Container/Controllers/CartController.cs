@@ -15,7 +15,13 @@ namespace SPT.eCommerce.Cart.Container.Controllers
     [ApiController]
     public class CartController : ControllerBase
     {
-        public IActionResult CreateCart()
+        /// <summary>
+        /// Create new cart for user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpPost("users/{userId}")]
+        public IActionResult CreateCart(Guid userId)
         {
             return Ok(new { message = "Cart Created successfully!" });
         }
