@@ -40,7 +40,7 @@ steps:
  
   inputs:
     command: build
-    projects: 'src/SPT.eCommerce.Api.Initial/SPT.eCommerce.Initial.sln'
+    projects: '$(solution)'
     arguments: '--configuration $(buildConfiguration)'
 #--------------------------------------------------#
 - task: DotNetCoreCLI@2
@@ -48,7 +48,7 @@ steps:
   displayName: 'Publish Artifacts'
   inputs:
     command: publish
-    projects: 'src/SPT.eCommerce.Api.Initial/SPT.eCommerce.Initial.sln.sln'
+    projects: '$(solution)'
     zipAfterPublish: true
     arguments: '--configuration $(buildConfiguration) --output $(build.artifactstagingdirectory)'
 #-------------------------------------------------#
